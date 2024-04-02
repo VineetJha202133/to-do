@@ -1,6 +1,6 @@
 {
-    "name": "home_widget_demo",
-    "short_name": "home_widget_demo",
+    "name": "todo_flutter",
+    "short_name": "todo_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
