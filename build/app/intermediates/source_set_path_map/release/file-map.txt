@@ -1,0 +1,14 @@
+com.myapps.todoer.app-jetified-window-1.0.0-beta04-0 /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/res
+com.myapps.todoer.app-jetified-window-java-1.0.0-beta04-1 /Users/rishichhabra/.gradle/caches/transforms-3/142c24f2530665bb6deb4123ab140714/transformed/jetified-window-java-1.0.0-beta04/res
+com.myapps.todoer.app-core-1.6.0-2 /Users/rishichhabra/.gradle/caches/transforms-3/2579a7de00054bf46a8dbc332552f622/transformed/core-1.6.0/res
+com.myapps.todoer.app-jetified-annotation-experimental-1.1.0-3 /Users/rishichhabra/.gradle/caches/transforms-3/3f96ca76068ab400b494bc7d541ee256/transformed/jetified-annotation-experimental-1.1.0/res
+com.myapps.todoer.app-main-4 /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/res
+com.myapps.todoer.app-release-5 /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/release/res
+com.myapps.todoer.app-pngs-6 /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/app/generated/res/pngs/release
+com.myapps.todoer.app-resValues-7 /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/app/generated/res/resValues/release
+com.myapps.todoer.app-rs-8 /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/app/generated/res/rs/release
+com.myapps.todoer.app-mergeReleaseResources-9 /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/app/intermediates/incremental/release/mergeReleaseResources/merged.dir
+com.myapps.todoer.app-mergeReleaseResources-10 /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/app/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+com.myapps.todoer.app-merged_res-11 /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/app/intermediates/merged_res/release
+com.myapps.todoer.app-packaged_res-12 /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/path_provider_android/intermediates/packaged_res/release
+com.myapps.todoer.app-packaged_res-13 /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/sqflite/intermediates/packaged_res/release

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart'; // Import for date formatting
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:todo/scopedmodel/todo_list_model.dart';
@@ -24,6 +25,8 @@ class AddTodoScreen extends StatefulWidget {
 
 class _AddTodoScreenState extends State<AddTodoScreen> {
   late String newTask;
+  late DateTime selectedDate = DateTime.now(); // Selected date
+  late Priority selectedPriority = Priority.medium; // Selected priority
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -65,7 +68,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'What task are you planning to perfrom?',
+                  'What task are you planning to perform?',
                   style: TextStyle(
                       color: Colors.black38,
                       fontWeight: FontWeight.w600,
@@ -116,37 +119,96 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
                       tag: "not_using_right_now", //widget.heroIds.titleId,
                     ),
                   ],
-                )
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Select Date:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        final selectedDate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2021),
+                          lastDate: DateTime(2030),
+                        );
+                        if (selectedDate != null) {
+                          setState(() {
+                            this.selectedDate = selectedDate;
+                          });
+                        }
+                      },
+                      child: Text(
+                        DateFormat('yyyy-MM-dd').format(selectedDate),
+                        style: TextStyle(
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Select Priority:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    DropdownButton<Priority>(
+                      value: selectedPriority,
+                      onChanged: (Priority? newValue) {
+                        setState(() {
+                          selectedPriority = newValue!;
+                        });
+                      },
+                      items: Priority.values.map((Priority priority) {
+                        return DropdownMenuItem<Priority>(
+                          value: priority,
+                          child: Text(priority.toString().split('.').last),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: Builder(
-            builder: (BuildContext context) {
-              return FloatingActionButton.extended(
-                heroTag: 'fab_new_task',
-                icon: Icon(Icons.add),
-                backgroundColor: _color,
-                label: Text('Create Task'),
-                onPressed: () {
-                  if (newTask.isEmpty) {
-                    final snackBar = SnackBar(
-                      content: Text(
-                          'Ummm... It seems that you are trying to add an invisible task which is not allowed in this realm.'),
-                      backgroundColor: _color,
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    // _scaffoldKey.currentState.showSnackBar(snackBar);
-                  } else {
-                    model.addTodo(Todo(
-                      newTask,
-                      parent: _task.id,
-                    ));
-                    Navigator.pop(context);
-                  }
-                },
-              );
+          floatingActionButton: FloatingActionButton.extended(
+            heroTag: 'fab_new_task',
+            icon: Icon(Icons.add),
+            backgroundColor: _color,
+            label: Text('Create Task'),
+            onPressed: () {
+              if (newTask.isEmpty) {
+                final snackBar = SnackBar(
+                  content: Text(
+                    'Ummm... It seems that you are trying to add an invisible task which is not allowed in this realm.',
+                  ),
+                  backgroundColor: _color,
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              } else {
+                model.addTodo(Todo(
+                  newTask,
+                  selectedDate,
+                  selectedPriority,
+                  parent: _task.id,
+                ));
+                Navigator.pop(context);
+              }
             },
           ),
         );

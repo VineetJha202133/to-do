@@ -1,0 +1,4 @@
+#Wed Apr 17 22:54:10 IST 2024
+base.0=/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

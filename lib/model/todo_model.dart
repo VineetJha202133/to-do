@@ -5,22 +5,35 @@ import 'package:todo/utils/uuid.dart';
 
 part 'todo_model.g.dart';
 
+enum Priority { high, medium, low }
+
 @JsonSerializable()
 class Todo {
   final String id, parent;
   final String name;
+  final DateTime dateTime;
+  final Priority priority;
   @JsonKey(name: 'completed')
   final int isCompleted;
 
-  Todo(this.name, {required this.parent, this.isCompleted = 0, String? id})
+  Todo(this.name, this.dateTime, this.priority,
+      {required this.parent, this.isCompleted = 0, String? id})
       : this.id = id ?? Uuid().generateV4();
 
-  Todo copy({String? name, int? isCompleted, String? id, String? parent}) {
+  Todo copy(
+      {String? name,
+      DateTime? dateTime,
+      Priority? priority,
+      int? isCompleted,
+      String? id,
+      String? parent}) {
     return Todo(
       name ?? this.name,
+      dateTime ?? this.dateTime,
+      priority ?? this.priority,
+      parent: parent ?? this.parent,
       isCompleted: isCompleted ?? this.isCompleted,
       id: id ?? this.id,
-      parent: parent ?? this.parent,
     );
   }
 

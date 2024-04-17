@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:intl/intl.dart';
+import 'package:todo/model/todo_model.dart';
 
 import 'package:todo/scopedmodel/todo_list_model.dart';
 import 'package:todo/task_progress_indicator.dart';
@@ -41,32 +43,6 @@ class _DetailScreenState extends State<DetailScreen>
         .animate(_controller);
   }
 
-  // getContainer(bool isCompleted, {Widget child}) {
-  //   if (isCompleted) {
-  //     return Container(
-  //       padding: EdgeInsets.only(left: 22.0, right: 22.0),
-  //       decoration: BoxDecoration(
-  //         gradient: LinearGradient(
-  //           begin: Alignment.centerLeft,
-  //           end: Alignment.centerRight,
-  //           stops: [0.4, 0.6, 1],
-  //           colors: <Color>[
-  //             Colors.grey.shade100,
-  //             Colors.grey.shade50,
-  //             Colors.white,
-  //           ],
-  //         ),
-  //       ),
-  //       child: child,
-  //     );
-  //   } else {
-  //     return Container(
-  //       padding: EdgeInsets.only(left: 22.0, right: 22.0),
-  //       child: child,
-  //     );
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     _controller.forward();
@@ -95,7 +71,6 @@ class _DetailScreenState extends State<DetailScreen>
             appBar: AppBar(
               elevation: 0,
               iconTheme: IconThemeData(color: Colors.black26),
-
               backgroundColor: Colors.white,
               actions: [
                 IconButton(
@@ -184,6 +159,14 @@ class _DetailScreenState extends State<DetailScreen>
                           );
                         }
                         var todo = _todos[index];
+                        var todoColor;
+                        if (todo.priority == Priority.high) {
+                          todoColor = Colors.red;
+                        } else if (todo.priority == Priority.medium) {
+                          todoColor = Colors.yellow;
+                        } else {
+                          todoColor = Colors.green;
+                        }
                         return Container(
                           padding: EdgeInsets.only(left: 22.0, right: 22.0),
                           child: ListTile(
@@ -199,18 +182,50 @@ class _DetailScreenState extends State<DetailScreen>
                               icon: Icon(Icons.delete_outline),
                               onPressed: () => model.removeTodo(todo),
                             ),
-                            title: Text(
-                              todo.name,
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w600,
-                                color: todo.isCompleted == 1
-                                    ? _color
-                                    : Colors.black54,
-                                decoration: todo.isCompleted == 1
-                                    ? TextDecoration.lineThrough
-                                    : TextDecoration.none,
-                              ),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  todo.name,
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600,
+                                    color: todo.isCompleted == 1
+                                        ? todoColor.withOpacity(0.5)
+                                        : todoColor,
+                                    decoration: todo.isCompleted == 1
+                                        ? TextDecoration.lineThrough
+                                        : TextDecoration.none,
+                                  ),
+                                ),
+                                SizedBox(height: 8),
+                                Row(
+                                  children: [
+                                    Icon(Icons.calendar_today,
+                                        color: todoColor, size: 16),
+                                    SizedBox(width: 4),
+                                    Text(
+                                      DateFormat('yyyy-MM-dd')
+                                          .format(todo.dateTime),
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: todoColor,
+                                      ),
+                                    ),
+                                    SizedBox(width: 16),
+                                    Icon(Icons.flag,
+                                        color: todoColor, size: 16),
+                                    SizedBox(width: 4),
+                                    Text(
+                                      todo.priority.toString().split('.').last,
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: todoColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         );
