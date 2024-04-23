@@ -390,6 +390,31 @@ library {
 }
 library {
   maven_library {
+    groupId: "androidx.media"
+    artifactId: "media"
+    version: "1.1.0"
+  }
+  digests {
+    sha256: "\337\2735\272\247\037\263\305\272;\367\363}\006\314~\233\346\203\f\'n$0\032RY\"\246\341C\320"
+  }
+  repo_index {
+  }
+}
+library {
+  maven_library {
+    groupId: "com.google.code.gson"
+    artifactId: "gson"
+    version: "2.8.9"
+  }
+  digests {
+    sha256: "\323\231\222\221\205]\344\225\311Lt7a\270\253Qv\317\352\276(\032Z\260\330\350\324S&\375p>"
+  }
+  repo_index {
+    value: 1
+  }
+}
+library {
+  maven_library {
     groupId: "io.flutter"
     artifactId: "armeabi_v7a_release"
     version: "1.0.0-e76c956498841e1ab458577d3892003e553e4f3c"
@@ -429,7 +454,7 @@ library {
 }
 library {
   digests {
-    sha256: "\2537\377\374\305\235U\265\304\265\005\002;\'\016\371\331a\346\tO\036\364P;\357\214&\346\232]7"
+    sha256: "\034\032\021\332\3766-l\272\322\027\267g\332\035n\271\363\217\337\325\330s!9o\017\305\301\2514A"
   }
 }
 library_dependencies {
@@ -596,15 +621,23 @@ library_dependencies {
   library_dep_index: 26
   library_dep_index: 28
 }
+library_dependencies {
+  library_index: 32
+  library_dep_index: 11
+  library_dep_index: 14
+}
 module_dependencies {
   module_name: "base"
   dependency_index: 28
+  dependency_index: 34
+  dependency_index: 35
+  dependency_index: 36
+  dependency_index: 0
+  dependency_index: 11
   dependency_index: 32
   dependency_index: 33
-  dependency_index: 34
-  dependency_index: 0
   dependency_index: 2
-  dependency_index: 35
+  dependency_index: 37
 }
 repositories {
   maven_repo {
@@ -619,6 +652,26 @@ repositories {
 repositories {
   maven_repo {
     url: "https://storage.googleapis.com/download.flutter.io"
+  }
+}
+repositories {
+  maven_repo {
+    url: "https://dl.google.com/dl/android/maven2/"
+  }
+}
+repositories {
+  maven_repo {
+    url: "https://repo.maven.apache.org/maven2/"
+  }
+}
+repositories {
+  maven_repo {
+    url: "https://dl.google.com/dl/android/maven2/"
+  }
+}
+repositories {
+  maven_repo {
+    url: "https://repo.maven.apache.org/maven2/"
   }
 }
 repositories {

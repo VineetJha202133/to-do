@@ -30,79 +30,86 @@
 22        </intent>
 23    </queries>
 24
-25    <application
-26        android:name="android.app.Application"
-26-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:4:9-42
-27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-27-->[androidx.core:core:1.6.0] /Users/rishichhabra/.gradle/caches/transforms-3/2579a7de00054bf46a8dbc332552f622/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
-28        android:icon="@mipmap/ic_launcher"
-28-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:5:9-43
-29        android:label="todoer" >
-29-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:3:9-31
-30        <activity
-30-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:6:9-26:20
-31            android:name="com.myapps.todoer.MainActivity"
-31-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:7:13-41
-32            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-32-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:11:13-163
-33            android:exported="true"
-33-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:8:13-36
-34            android:hardwareAccelerated="true"
-34-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:12:13-47
-35            android:launchMode="singleTop"
-35-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:9:13-43
-36            android:theme="@style/LaunchTheme"
-36-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:10:13-47
-37            android:windowSoftInputMode="adjustResize" >
-37-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:13:13-55
-38
-39            <!--
-40                 Specifies an Android theme to apply to this Activity as soon as
-41                 the Android process has started. This theme is visible to the user
-42                 while the Flutter UI initializes. After that, this theme continues
-43                 to determine the Window background behind the Flutter UI.
-44            -->
-45            <meta-data
-45-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:18:13-21:17
-46                android:name="io.flutter.embedding.android.NormalTheme"
-46-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:19:15-70
-47                android:resource="@style/NormalTheme" />
-47-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:20:15-52
-48
-49            <intent-filter>
-49-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:22:13-25:29
-50                <action android:name="android.intent.action.MAIN" />
-50-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:23:17-68
-50-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:23:25-66
+25    <uses-permission android:name="android.permission.VIBRATE" />
+25-->[:flutter_local_notifications] /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/flutter_local_notifications/intermediates/merged_manifest/release/AndroidManifest.xml:9:5-66
+25-->[:flutter_local_notifications] /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/flutter_local_notifications/intermediates/merged_manifest/release/AndroidManifest.xml:9:22-63
+26    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+26-->[:flutter_local_notifications] /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/flutter_local_notifications/intermediates/merged_manifest/release/AndroidManifest.xml:10:5-77
+26-->[:flutter_local_notifications] /Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/flutter_local_notifications/intermediates/merged_manifest/release/AndroidManifest.xml:10:22-74
+27
+28    <application
+29        android:name="android.app.Application"
+29-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:4:9-42
+30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+30-->[androidx.core:core:1.6.0] /Users/rishichhabra/.gradle/caches/transforms-3/2579a7de00054bf46a8dbc332552f622/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+31        android:icon="@mipmap/ic_launcher"
+31-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:5:9-43
+32        android:label="todoer" >
+32-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:3:9-31
+33        <activity
+33-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:6:9-26:20
+34            android:name="com.myapps.todoer.MainActivity"
+34-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:7:13-41
+35            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+35-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:11:13-163
+36            android:exported="true"
+36-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:8:13-36
+37            android:hardwareAccelerated="true"
+37-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:12:13-47
+38            android:launchMode="singleTop"
+38-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:9:13-43
+39            android:theme="@style/LaunchTheme"
+39-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:10:13-47
+40            android:windowSoftInputMode="adjustResize" >
+40-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:13:13-55
+41
+42            <!--
+43                 Specifies an Android theme to apply to this Activity as soon as
+44                 the Android process has started. This theme is visible to the user
+45                 while the Flutter UI initializes. After that, this theme continues
+46                 to determine the Window background behind the Flutter UI.
+47            -->
+48            <meta-data
+48-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:18:13-21:17
+49                android:name="io.flutter.embedding.android.NormalTheme"
+49-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:19:15-70
+50                android:resource="@style/NormalTheme" />
+50-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:20:15-52
 51
-52                <category android:name="android.intent.category.LAUNCHER" />
-52-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:24:17-76
-52-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:24:27-74
-53            </intent-filter>
-54        </activity>
-55        <!--
-56             Don't delete the meta-data below.
-57             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-58        -->
-59        <meta-data
-59-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:29:9-31:33
-60            android:name="flutterEmbedding"
-60-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:30:13-44
-61            android:value="2" />
-61-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:31:13-30
-62
-63        <uses-library
-63-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
-64            android:name="androidx.window.extensions"
-64-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
-65            android:required="false" />
-65-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+52            <intent-filter>
+52-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:22:13-25:29
+53                <action android:name="android.intent.action.MAIN" />
+53-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:23:17-68
+53-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:23:25-66
+54
+55                <category android:name="android.intent.category.LAUNCHER" />
+55-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:24:17-76
+55-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:24:27-74
+56            </intent-filter>
+57        </activity>
+58        <!--
+59             Don't delete the meta-data below.
+60             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+61        -->
+62        <meta-data
+62-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:29:9-31:33
+63            android:name="flutterEmbedding"
+63-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:30:13-44
+64            android:value="2" />
+64-->/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android/app/src/main/AndroidManifest.xml:31:13-30
+65
 66        <uses-library
-66-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
-67            android:name="androidx.window.sidecar"
-67-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+66-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+67            android:name="androidx.window.extensions"
+67-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
 68            android:required="false" />
-68-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
-69    </application>
-70
-71</manifest>
+68-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+69        <uses-library
+69-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+70            android:name="androidx.window.sidecar"
+70-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+71            android:required="false" />
+71-->[androidx.window:window:1.0.0-beta04] /Users/rishichhabra/.gradle/caches/transforms-3/032f4dff274e516110d9363a9793a3e3/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+72    </application>
+73
+74</manifest>

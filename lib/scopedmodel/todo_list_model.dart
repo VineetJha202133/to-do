@@ -51,6 +51,24 @@ class TodoListModel extends Model {
     notifyListeners();
   }
 
+  void sortTodosByPriority(String taskId) {
+    // Sorting logic by priority
+    _todos.sort((a, b) {
+      if (a.priority == b.priority) {
+        return a.dateTime.compareTo(b.dateTime);
+      } else {
+        return a.priority.index.compareTo(b.priority.index);
+      }
+    });
+    notifyListeners();
+  }
+
+  void sortTodosByDate(String taskId) {
+    // Sorting logic by date
+    _todos.sort((a, b) => a.dateTime.compareTo(b.dateTime));
+    notifyListeners();
+  }
+
   @override
   void removeListener(listener) {
     super.removeListener(listener);

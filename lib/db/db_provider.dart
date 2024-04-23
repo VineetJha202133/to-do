@@ -82,7 +82,6 @@ class DBProvider {
     return File(await _dbPath).exists();
   }
 
-  // Initialize the database
   initDB() async {
     String path = await _dbPath;
     if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
@@ -99,7 +98,8 @@ class DBProvider {
           "id TEXT PRIMARY KEY,"
           "name TEXT,"
           "parent TEXT,"
-          "dateTime TEXT," // Add the dateTime column
+          "dateTime TEXT,"
+          "priority TEXT,"
           "completed INTEGER NOT NULL DEFAULT 0"
           ")");
       return db;
@@ -117,7 +117,8 @@ class DBProvider {
           "id TEXT PRIMARY KEY,"
           "name TEXT,"
           "parent TEXT,"
-          "dateTime TEXT," // Add the dateTime column
+          "dateTime TEXT,"
+          "priority TEXT," // Add the priority column
           "completed INTEGER NOT NULL DEFAULT 0"
           ")");
     });

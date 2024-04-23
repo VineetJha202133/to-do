@@ -94,6 +94,18 @@ class _DetailScreenState extends State<DetailScreen>
                   color: _color,
                   onActionPressed: () => model.removeTask(_task),
                 ),
+                IconButton(
+                  icon: Icon(Icons.sort),
+                  onPressed: () {
+                    model.sortTodosByPriority(widget.taskId);
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.calendar_today),
+                  onPressed: () {
+                    model.sortTodosByDate(widget.taskId);
+                  },
+                ),
               ],
             ),
             body: Padding(

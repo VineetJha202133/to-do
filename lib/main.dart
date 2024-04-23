@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:todo/scopedmodel/todo_list_model.dart';
@@ -15,25 +16,81 @@ import 'package:todo/component/todo_badge.dart';
 import 'package:todo/page/privacy_policy.dart';
 import 'package:todo/model/data/choice_card.dart';
 
-void main() => runApp(MyApp());
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize FlutterLocalNotificationsPlugin
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  // Android initialization settings
+  var androidInitializationSettings = AndroidInitializationSettings('app_icon');
+
+  // iOS initialization settings
+  var iOSInitializationSettings = DarwinInitializationSettings();
+
+  // Initialization settings
+  var initializationSettings = InitializationSettings(
+      android: androidInitializationSettings, iOS: iOSInitializationSettings);
+
+  // Initialize the plugin
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness:
+        Brightness.dark, // Change this to Brightness.light if needed
+  ));
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var lightTheme = ThemeData.light().copyWith(
+      // Define your light theme here
+      textTheme: TextTheme(
+        headline1: TextStyle(
+            fontSize: 32.0,
+            fontWeight: FontWeight.w400,
+            color: Colors.black), // Adjust text color to black
+        subtitle1: TextStyle(
+            fontSize: 28.0,
+            fontWeight: FontWeight.w500,
+            color: Colors.black), // Adjust text color to black
+        bodyText1: TextStyle(
+            fontSize: 14.0,
+            fontFamily: 'Hind',
+            color: Colors.black), // Adjust text color to black
+      ),
+    );
+
+    var darkTheme = ThemeData.dark().copyWith(
+      // Define your dark theme here
+      textTheme: TextTheme(
+        headline1: TextStyle(
+            fontSize: 32.0,
+            fontWeight: FontWeight.w400,
+            color: Colors.white), // Adjust text color to white
+        subtitle1: TextStyle(
+            fontSize: 28.0,
+            fontWeight: FontWeight.w500,
+            color: Colors.white), // Adjust text color to white
+        bodyText1: TextStyle(
+            fontSize: 14.0,
+            fontFamily: 'Hind',
+            color: Colors.white), // Adjust text color to white
+      ),
+    );
+
     var app = MaterialApp(
       title: 'Todo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w400),
-          subtitle1: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w500),
-          bodyText1: TextStyle(
-            fontSize: 14.0,
-            fontFamily: 'Hind',
-          ),
-        ),
-      ),
+      themeMode: ThemeMode.system, // This line enables system theme
+      theme: lightTheme,
+      darkTheme: darkTheme,
       home: MyHomePage(title: ''),
     );
 
@@ -73,6 +130,7 @@ class _MyHomePageState extends State<MyHomePage>
   final GlobalKey _backdropKey = GlobalKey(debugLabel: 'Backdrop');
   late PageController _pageController;
   int _currentPageIndex = 0;
+  bool _isDarkMode = false;
 
   @override
   void initState() {
@@ -88,154 +146,187 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<TodoListModel>(
-        builder: (BuildContext context, Widget? child, TodoListModel model) {
-      var _isLoading = model.isLoading;
-      var _tasks = model.tasks;
-      var _todos = model.todos;
-      var backgroundColor = _tasks.isEmpty || _tasks.length == _currentPageIndex
-          ? Colors.blueGrey
-          : ColorUtils.getColorFrom(id: _tasks[_currentPageIndex].color);
-      if (!_isLoading) {
-        // move the animation value towards upperbound only when loading is complete
-        _controller.forward();
-      }
-      return GradientBackground(
-        color: backgroundColor,
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            title: Text(widget.title),
-            centerTitle: true,
-            elevation: 0.0,
+      builder: (BuildContext context, Widget? child, TodoListModel model) {
+        var _isLoading = model.isLoading;
+        var _tasks = model.tasks;
+        var _todos = model.todos;
+        var backgroundColor =
+            _tasks.isEmpty || _tasks.length == _currentPageIndex
+                ? Colors.blueGrey
+                : ColorUtils.getColorFrom(id: _tasks[_currentPageIndex].color);
+        if (!_isLoading) {
+          // move the animation value towards upperbound only when loading is complete
+          _controller.forward();
+        }
+        return GradientBackground(
+          color: backgroundColor,
+          child: Scaffold(
             backgroundColor: Colors.transparent,
-            actions: [
-              PopupMenuButton<Choice>(
-                onSelected: (choice) {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          AboutScreen()));
-                },
-                itemBuilder: (BuildContext context) {
-                  return choices.map((Choice choice) {
-                    return PopupMenuItem<Choice>(
-                      value: choice,
-                      child: Text(choice.title),
-                    );
-                  }).toList();
-                },
-              ),
-            ],
-          ),
-          body: _isLoading
-              ? Center(
-                  child: CircularProgressIndicator(
-                    strokeWidth: 1.0,
-                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                  ),
-                )
-              : FadeTransition(
-                  opacity: _animation,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(top: 0.0, left: 56.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            // ShadowImage(),
-                            Container(
-                              // margin: EdgeInsets.only(top: 22.0),
-                              child: Text(
-                                '${widget.currentDay(context)}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1
-                                    ?.copyWith(color: Colors.white),
-                              ),
-                            ),
-                            Text(
-                              '${DateTimeUtils.currentDate} ${DateTimeUtils.currentMonth}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle1
-                                  ?.copyWith(
-                                      color: Colors.white.withOpacity(0.7)),
-                            ),
-                            Container(height: 16.0),
-                            Text(
-                              'You have ${_todos.where((todo) => todo.isCompleted == 0).length} tasks to complete',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1
-                                  ?.copyWith(
-                                      color: Colors.white.withOpacity(0.7)),
-                            ),
-                            Container(
-                              height: 16.0,
-                            )
-                            // Container(
-                            //   margin: EdgeInsets.only(top: 42.0),
-                            //   child: Text(
-                            //     'TODAY : FEBURARY 13, 2019',
-                            //     style: Theme.of(context)
-                            //         .textTheme
-                            //         .subtitle
-                            //         .copyWith(color: Colors.white.withOpacity(0.8)),
-                            //   ),
-                            // ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        key: _backdropKey,
-                        flex: 1,
-                        child: NotificationListener<ScrollNotification>(
-                          onNotification: (notification) {
-                            if (notification is ScrollEndNotification) {
-                              print(
-                                  "ScrollNotification = ${_pageController.page}");
-                              var currentPage =
-                                  _pageController.page?.round().toInt() ?? 0;
-                              if (_currentPageIndex != currentPage) {
-                                setState(() => _currentPageIndex = currentPage);
-                              }
-                            }
-                            return true;
-                          },
-                          child: PageView.builder(
-                            controller: _pageController,
-                            itemBuilder: (BuildContext context, int index) {
-                              if (index == _tasks.length) {
-                                return AddPageCard(
-                                  color: Colors.blueGrey,
-                                );
-                              } else {
-                                return TaskCard(
-                                  backdropKey: _backdropKey,
-                                  color: ColorUtils.getColorFrom(
-                                      id: _tasks[index].color),
-                                  getHeroIds: widget._generateHeroIds,
-                                  getTaskCompletionPercent:
-                                      model.getTaskCompletionPercent,
-                                  getTotalTodos: model.getTotalTodosFrom,
-                                  task: _tasks[index],
-                                );
-                              }
-                            },
-                            itemCount: _tasks.length + 1,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 32.0),
-                      ),
-                    ],
+            appBar: AppBar(
+              title: Text(widget.title),
+              centerTitle: true,
+              elevation: 0.0,
+              backgroundColor: Colors.transparent,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    // Toggle dark mode
+                    setState(() {
+                      _isDarkMode = !_isDarkMode;
+                    });
+                    // Set system theme mode based on dark mode state
+                    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                      statusBarColor: Colors.transparent,
+                      statusBarIconBrightness:
+                          _isDarkMode ? Brightness.light : Brightness.dark,
+                    ));
+                  },
+                  icon: Icon(
+                    _isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                    color: _isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),
-        ),
-      );
-    });
+                PopupMenuButton<Choice>(
+                  onSelected: (choice) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => AboutScreen()));
+                  },
+                  itemBuilder: (BuildContext context) {
+                    return choices.map((Choice choice) {
+                      return PopupMenuItem<Choice>(
+                        value: choice,
+                        child: Text(choice.title),
+                      );
+                    }).toList();
+                  },
+                ),
+              ],
+            ),
+            body: _isLoading
+                ? Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 1.0,
+                      valueColor:
+                          new AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  )
+                : FadeTransition(
+                    opacity: _animation,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(top: 0.0, left: 56.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              // ShadowImage(),
+                              Container(
+                                // margin: EdgeInsets.only(top: 22.0),
+                                child: Text(
+                                  '${widget.currentDay(context)}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      ?.copyWith(
+                                        color: _isDarkMode
+                                            ? Colors.white.withOpacity(0.7)
+                                            : Colors.black.withOpacity(0.7),
+                                      ),
+                                ),
+                              ),
+                              Text(
+                                '${DateTimeUtils.currentDate} ${DateTimeUtils.currentMonth}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline2
+                                    ?.copyWith(
+                                      color: _isDarkMode
+                                          ? Colors.white.withOpacity(0.7)
+                                          : Colors.black.withOpacity(0.7),
+                                    ),
+                              ),
+                              Container(height: 16.0),
+                              Text(
+                                'You have ${_todos.where((todo) => todo.isCompleted == 0).length} tasks to complete',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    ?.copyWith(
+                                      color: _isDarkMode
+                                          ? Colors.white.withOpacity(0.7)
+                                          : Colors.black.withOpacity(0.7),
+                                    ),
+                              ),
+
+                              Container(
+                                height: 16.0,
+                              )
+                              // Container(
+                              //   margin: EdgeInsets.only(top: 42.0),
+                              //   child: Text(
+                              //     'TODAY : FEBURARY 13, 2019',
+                              //     style: Theme.of(context)
+                              //         .textTheme
+                              //         .subtitle
+                              //         .copyWith(color: Colors.white.withOpacity(0.8)),
+                              //   ),
+                              // ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          key: _backdropKey,
+                          flex: 1,
+                          child: NotificationListener<ScrollNotification>(
+                            onNotification: (notification) {
+                              if (notification is ScrollEndNotification) {
+                                print(
+                                    "ScrollNotification = ${_pageController.page}");
+                                var currentPage =
+                                    _pageController.page?.round().toInt() ?? 0;
+                                if (_currentPageIndex != currentPage) {
+                                  setState(
+                                      () => _currentPageIndex = currentPage);
+                                }
+                              }
+                              return true;
+                            },
+                            child: PageView.builder(
+                              controller: _pageController,
+                              itemBuilder: (BuildContext context, int index) {
+                                if (index == _tasks.length) {
+                                  return AddPageCard(
+                                    color: Colors.blueGrey,
+                                  );
+                                } else {
+                                  return TaskCard(
+                                    backdropKey: _backdropKey,
+                                    color: ColorUtils.getColorFrom(
+                                        id: _tasks[index].color),
+                                    getHeroIds: widget._generateHeroIds,
+                                    getTaskCompletionPercent:
+                                        model.getTaskCompletionPercent,
+                                    getTotalTodos: model.getTotalTodosFrom,
+                                    task: _tasks[index],
+                                    isDarkMode: _isDarkMode, // Add this line
+                                  );
+                                }
+                              },
+                              itemCount: _tasks.length + 1,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(bottom: 32.0),
+                        ),
+                      ],
+                    ),
+                  ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -302,6 +393,7 @@ class TaskCard extends StatelessWidget {
   final GlobalKey backdropKey;
   final Task task;
   final Color color;
+  final bool isDarkMode; // Add this line
 
   final TaskGetter<Task, int> getTotalTodos;
   final TaskGetter<Task, HeroId> getHeroIds;
@@ -314,6 +406,7 @@ class TaskCard extends StatelessWidget {
     required this.getTotalTodos,
     required this.getHeroIds,
     required this.getTaskCompletionPercent,
+    required this.isDarkMode, // Add this line
   });
 
   @override
@@ -353,7 +446,9 @@ class TaskCard extends StatelessWidget {
         ),
         elevation: 4.0,
         margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-        color: Colors.white,
+        color: isDarkMode
+            ? Colors.white.withOpacity(0.7)
+            : Colors.grey.withOpacity(0.5), // Use isDarkMode here
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
           child: Column(

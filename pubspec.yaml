@@ -18,6 +18,8 @@ dependencies:
   flutter_markdown: ^0.6.2
   cupertino_icons: ^1.0.3
   sqflite_common_ffi:
+  shared_preferences: ^2.2.3
+  flutter_local_notifications: ^17.1.0
 
 dev_dependencies:
   flutter_test:

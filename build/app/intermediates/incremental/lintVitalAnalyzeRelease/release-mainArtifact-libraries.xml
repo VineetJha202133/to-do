@@ -4,10 +4,36 @@
       jars="/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/app/intermediates/flutter/release/libs.jar"
       resolved="__local_aars__:/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/app/intermediates/flutter/release/libs.jar:unspecified"/>
   <library
+      name="/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android@@:shared_preferences_android::release"
+      jars="/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/shared_preferences_android/.transforms/a52fd0267f8bac4e7fcfd2ef5822ce94/transformed/out/jars/classes.jar:/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/shared_preferences_android/.transforms/a52fd0267f8bac4e7fcfd2ef5822ce94/transformed/out/jars/libs/R.jar"
+      resolved="io.flutter.plugins.sharedpreferences:shared_preferences_android:unspecified"
+      folder="/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/shared_preferences_android/.transforms/a52fd0267f8bac4e7fcfd2ef5822ce94/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android@@:sqflite::release"
       jars="/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/sqflite/.transforms/ba0333baa38835b9f4af23ed76b0b7c9/transformed/out/jars/classes.jar:/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/sqflite/.transforms/ba0333baa38835b9f4af23ed76b0b7c9/transformed/out/jars/libs/R.jar"
       resolved="com.tekartik.sqflite:sqflite:unspecified"
       folder="/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/sqflite/.transforms/ba0333baa38835b9f4af23ed76b0b7c9/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/android@@:flutter_local_notifications::release"
+      jars="/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/flutter_local_notifications/.transforms/e7cbc21ece8468aeaece408bd717cf3a/transformed/out/jars/classes.jar:/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/flutter_local_notifications/.transforms/e7cbc21ece8468aeaece408bd717cf3a/transformed/out/jars/libs/R.jar"
+      resolved="com.dexterous.flutterlocalnotifications:flutter_local_notifications:unspecified"
+      folder="/Users/rishichhabra/Documents/GitHub/Flutter_ToDo/build/flutter_local_notifications/.transforms/e7cbc21ece8468aeaece408bd717cf3a/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -314,4 +340,21 @@
       symbolFile="R.txt"
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media:media:1.1.0@aar"
+      jars="/Users/rishichhabra/.gradle/caches/transforms-3/30f019b4abc95840d13619d9b235449b/transformed/media-1.1.0/jars/classes.jar"
+      resolved="androidx.media:media:1.1.0"
+      folder="/Users/rishichhabra/.gradle/caches/transforms-3/30f019b4abc95840d13619d9b235449b/transformed/media-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="com.google.code.gson:gson:2.8.9@jar"
+      jars="/Users/rishichhabra/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.9/8a432c1d6825781e21a02db2e2c33c5fde2833b9/gson-2.8.9.jar"
+      resolved="com.google.code.gson:gson:2.8.9"/>
 </libraries>
