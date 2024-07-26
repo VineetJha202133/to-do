@@ -6,7 +6,7 @@ Todo _$TodoFromJson(Map<String, dynamic> json) {
       json['name'] as String? ?? '',
       DateTime.parse(json['dateTime'] as String? ?? ''),
       json['priority'] == null
-          ? Priority.low
+          ? Priority.Low
           : Priority.values.firstWhere(
               (e) => e.toString().split('.').last == json['priority']),
       parent: json['parent'] as String? ?? '',
@@ -19,7 +19,7 @@ Todo _$TodoFromJson(Map<String, dynamic> json) {
     return Todo(
       '',
       DateTime.now(),
-      Priority.low,
+      Priority.Low,
       parent: '',
     );
   }

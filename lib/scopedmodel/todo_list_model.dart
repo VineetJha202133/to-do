@@ -40,8 +40,8 @@ class TodoListModel extends Model {
   void loadTodos() async {
     var isNew = !await DBProvider.db.dbExists();
     if (isNew) {
-      await _db.insertBulkTask(_db.tasks);
-      await _db.insertBulkTodo(_db.todos);
+      // await _db.insertBulkTask(_db.tasks);
+      // await _db.insertBulkTodo(_db.todos);
     }
     _tasks = await _db.getAllTask();
     _todos = await _db.getAllTodo();

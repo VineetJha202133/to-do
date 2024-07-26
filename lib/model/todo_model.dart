@@ -5,7 +5,7 @@ import 'package:todo/utils/uuid.dart';
 
 part 'todo_model.g.dart';
 
-enum Priority { high, medium, low }
+enum Priority { High, Medium, Low }
 
 @JsonSerializable()
 class Todo {

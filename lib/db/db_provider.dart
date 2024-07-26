@@ -16,54 +16,54 @@ class DBProvider {
   static final DBProvider db = DBProvider._(); // Singleton instance
 
   var todos = [
-    Todo(
-      "Vegetables",
-      DateTime.now(),
-      Priority.medium,
-      parent: '1',
-    ),
-    Todo(
-      "Birthday gift",
-      DateTime.now(),
-      Priority.high,
-      parent: '1',
-    ),
-    Todo(
-      "Chocolate cookies",
-      DateTime.now(),
-      Priority.low,
-      parent: '1',
-      isCompleted: 1,
-    ),
-    Todo(
-      "20 pushups",
-      DateTime.now(),
-      Priority.medium,
-      parent: '2',
-    ),
-    Todo(
-      "Tricep",
-      DateTime.now(),
-      Priority.low,
-      parent: '2',
-    ),
-    Todo(
-      "15 burpees (3 sets)",
-      DateTime.now(),
-      Priority.high,
-      parent: '2',
-    ),
+    // Todo(
+    //   "Vegetables",
+    //   DateTime.now(),
+    //   Priority.medium,
+    //   parent: '1',
+    // ),
+    // Todo(
+    //   "Birthday gift",
+    //   DateTime.now(),
+    //   Priority.high,
+    //   parent: '1',
+    // ),
+    // Todo(
+    //   "Chocolate cookies",
+    //   DateTime.now(),
+    //   Priority.low,
+    //   parent: '1',
+    //   isCompleted: 1,
+    // ),
+    // Todo(
+    //   "20 pushups",
+    //   DateTime.now(),
+    //   Priority.medium,
+    //   parent: '2',
+    // ),
+    // Todo(
+    //   "Tricep",
+    //   DateTime.now(),
+    //   Priority.low,
+    //   parent: '2',
+    // ),
+    // Todo(
+    //   "15 burpees (3 sets)",
+    //   DateTime.now(),
+    //   Priority.high,
+    //   parent: '2',
+    // ),
   ];
 
   var tasks = [
-    Task('Shopping',
-        id: '1',
-        color: Colors.purple.value,
-        codePoint: Icons.shopping_cart.codePoint),
-    Task('Workout',
-        id: '2',
-        color: Colors.pink.value,
-        codePoint: Icons.fitness_center.codePoint),
+    // Task('Shopping',
+    //     id: '1',
+    //     color: Colors.purple.value,
+    //     codePoint: Icons.shopping_cart.codePoint),
+    // Task('Workout',
+    //     id: '2',
+    //     color: Colors.pink.value,
+    //     codePoint: Icons.fitness_center.codePoint),
   ];
 
   Future<Database> get database async {
@@ -206,5 +206,12 @@ class DBProvider {
   // Close the database
   closeDB() {
     _database?.close();
+  }
+
+  Future<void> clearDatabase() async {
+    final db = await database;
+    await db.delete('Task');
+    await db.delete('Todo');
+    print("All data cleared from database");
   }
 }
