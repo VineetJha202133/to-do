@@ -1,6 +1,5 @@
-```markdown
 # Flutter ToDo
-```
+
 A simple and intuitive task management application built using Flutter.
 
 ## Features
