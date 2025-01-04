@@ -3,7 +3,11 @@
 A simple and intuitive task management application built using Flutter.
 
 ## Features
-
+⦁ Implement a simple state management system to switch between:
+⦁ Idle
+⦁ Ringing
+⦁ In-Call
+⦁ Call Ended
 - Create, read, update, and delete tasks
 - Local database storage with SQLite
 - Firebase authentication
